@@ -176,15 +176,15 @@ if (!fs.existsSync(targetPath)) {
 
 let content = fs.readFileSync(targetPath, 'utf8');
 
-// Patch 1: RR2 Banner Removal (v2.0.61)
-// Note: Changed from DO2 (v2.0.59) to RR2 (v2.0.61), vTA/rj namespaces, P container
-const bannerSearchPattern = 'function RR2({streamMode:A}){let[Q,B]=vTA.useState(null),[G,Z]=vTA.useState(null);if(vTA.useEffect(()=>{if(A==="thinking"&&Q===null)B(Date.now());else if(A!=="thinking"&&Q!==null)Z(Date.now()-Q),B(null)},[A,Q]),A==="thinking")return rj.createElement(P,{marginTop:1},rj.createElement($,{dimColor:!0},"∴ Thinking…"));if(G!==null)return rj.createElement(P,{marginTop:1},rj.createElement($,{dimColor:!0},"∴ Thought for ",Math.max(1,Math.round(G/1000)),"s (",rj.createElement($,{dimColor:!0,bold:!0},"ctrl+o")," ","to show thinking)"));return null}';
-const bannerReplacement = 'function RR2({streamMode:A}){return null}';
+// Patch 1: ZT2 Banner Removal (v2.0.62)
+// Note: Changed from RR2 (v2.0.61) to ZT2 (v2.0.62), rTA/GP namespaces, P container
+const bannerSearchPattern = 'function ZT2({streamMode:A}){let[Q,B]=rTA.useState(null),[G,Z]=rTA.useState(null);if(rTA.useEffect(()=>{if(A==="thinking"&&Q===null)B(Date.now());else if(A!=="thinking"&&Q!==null)Z(Date.now()-Q),B(null)},[A,Q]),A==="thinking")return GP.createElement(P,{marginTop:1},GP.createElement($,{dimColor:!0},"∴ Thinking…"));if(G!==null)return GP.createElement(P,{marginTop:1},GP.createElement($,{dimColor:!0},"∴ Thought for ",Math.max(1,Math.round(G/1000)),"s (",GP.createElement($,{dimColor:!0,bold:!0},"ctrl+o")," ","to show thinking)"));return null}';
+const bannerReplacement = 'function ZT2({streamMode:A}){return null}';
 
-// Patch 2: Thinking Visibility (v2.0.61)
-// Note: Changed from F89 (v2.0.59) to T69 (v2.0.61), u3 to A3, K to F
-const thinkingSearchPattern = 'case"thinking":if(!F&&!G)return null;return A3.createElement(T69,{addMargin:Q,param:A,isTranscriptMode:F,verbose:G});';
-const thinkingReplacement = 'case"thinking":return A3.createElement(T69,{addMargin:Q,param:A,isTranscriptMode:!0,verbose:G});';
+// Patch 2: Thinking Visibility (v2.0.62)
+// Note: Changed from T69 (v2.0.61) to X59 (v2.0.62), A3 to J3
+const thinkingSearchPattern = 'case"thinking":if(!F&&!G)return null;return J3.createElement(X59,{addMargin:Q,param:A,isTranscriptMode:F,verbose:G});';
+const thinkingReplacement = 'case"thinking":return J3.createElement(X59,{addMargin:Q,param:A,isTranscriptMode:!0,verbose:G});';
 
 let patch1Applied = false;
 let patch2Applied = false;
@@ -192,7 +192,7 @@ let patch2Applied = false;
 // Check if patches can be applied
 console.log('Checking patches...\n');
 
-console.log('Patch 1: RR2 banner removal');
+console.log('Patch 1: ZT2 banner removal');
 if (content.includes(bannerSearchPattern)) {
   patch1Applied = true;
   console.log('  ✅ Pattern found - ready to apply');
@@ -245,7 +245,7 @@ console.log('\nApplying patches...');
 // Apply Patch 1
 if (patch1Applied) {
   content = content.replace(bannerSearchPattern, bannerReplacement);
-  console.log('✅ Patch 1 applied: RR2 function now returns null');
+  console.log('✅ Patch 1 applied: ZT2 function now returns null');
 }
 
 // Apply Patch 2

@@ -265,18 +265,18 @@ Then restart Claude Code.
 
 ## Verification
 
-Check if patches are applied (for v2.0.61):
+Check if patches are applied (for v2.0.62):
 
 ```bash
-# Check RR2 patch
-grep -n "function RR2" ~/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js
+# Check ZT2 patch
+grep -n "function ZT2" ~/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js
 
-# Should show: function RR2({streamMode:A}){return null}
+# Should show: function ZT2({streamMode:A}){return null}
 
 # Check thinking visibility patch
-grep -n 'case"thinking":return A3.createElement(T69' ~/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js
+grep -n 'case"thinking":return J3.createElement(X59' ~/.claude/local/node_modules/@anthropic-ai/claude-code/cli.js
 
-# Should show: case"thinking":return A3.createElement(T69,{addMargin:Q,param:A,isTranscriptMode:!0,verbose:G});
+# Should show: case"thinking":return J3.createElement(X59,{addMargin:Q,param:A,isTranscriptMode:!0,verbose:G});
 ```
 
 ## Troubleshooting
@@ -411,11 +411,11 @@ $(which claude) → resolve symlinks → find cli.js
 
 ### Why Two Patches?
 
-1. **HM2 Function:** Controls the UI banner shown after thinking completes
+1. **ZT2 Function:** Controls the UI banner shown after thinking completes
 2. **Thinking Renderer:** Controls whether the actual thinking text is displayed
 
 Both must be patched because they're separate systems:
-- Patching only HM2 → Blank line appears where thinking should be
+- Patching only ZT2 → Blank line appears where thinking should be
 - Patching only the renderer → Banner still shows "ctrl+o to show"
 
 ### Pattern Evolution Across Versions
